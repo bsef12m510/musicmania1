@@ -1,0 +1,212 @@
+﻿@{
+    ViewBag.Title = "DeleteSongs";
+}
+
+@model List<OMC.Models.Song>
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: aliceblue;
+        }
+    </style>
+
+    <title>Home</title>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="/Content/Playlist.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Admin.css" rel="stylesheet" />
+
+    <script>
+
+        document.addEventListener('play', function (e) {
+            var audios = document.getElementsByTagName('audio');
+            for (var i = 0, len = audios.length; i < len; i++) {
+                if (audios[i] != e.target) {
+                    audios[i].pause();
+                }
+            }
+        }, true);
+
+
+
+    </script>
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+
+    <br> <br> <br> <br> <br>
+
+
+
+
+    <center>
+
+
+
+        <!--    <div class="body">
+
+                <div class="fronttext">
+
+                    <br>
+
+                    <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-remove"></span> <br> <p> Delete Songs </p> </h1>
+
+                    <form style="margin-bottom:30px" method="post" action="/Admin/Delete">
+                      <br>  <input type="text" name="Name" class="form-control" placeholder="Song's Name" required>
+
+                         <br> <br> <button type="submit" class="btn btn-lg btn-primary btn-block">Delete</button>
+
+                        @if(ViewBag.Delete != null)
+                        {
+
+
+                            if(ViewBag.Delete.Equals("Success"))
+                            {
+                                <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">  <p> Song Deleted ! </p> </h1>
+
+                            }
+                            else if(ViewBag.Delete.Equals("Fail"))
+                            {
+                                <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">  <p> Song doesn't exist ! </p> </h1>
+
+                            }
+
+                        }
+
+
+                    </form>
+             </div>
+
+            </div>
+
+
+
+            -->
+        @if (Model != null)
+        {
+
+
+            foreach (var s in Model)
+            {
+
+
+                <div class="row">
+
+
+
+                    <div class="col-xs-2">
+
+                    </div>
+
+                    <h2 class="animated fadeInUp pull-left" style="font-family: 'Comic Sans MS'; padding-top: 10px; padding-left: 10px; color:white"> <p> &#9834 - </p></h2>
+
+
+                    <div class="col-xs-5">
+
+
+
+                        <div class="bodya">
+
+                            <div class="player">
+
+
+                                <div style="background-color:HighlightText">
+
+
+                                    <h2 class="animated fadeInUp" style="font-family: 'Comic Sans MS'; padding-top: 10px; padding-left: 10px"><p>@s.SongName - @s.SingerName</p></h2>
+
+                                    <audio style="margin-top:10px; padding-left:10px" controls>
+
+                                        <source src="~/Songs/@s.FileName" type="audio/ogg">
+
+
+
+
+
+                                    </audio>
+
+
+                                    <form action="Delete" method="post">
+
+                                        <input type="hidden" value="@s.SongName" name="SongName">
+
+                                        <button class="btn btn-danger pull-left " style="margin-top: 12px"> Delete </button>
+
+                                    </form>
+
+                                </div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-5">
+
+                    </div>
+
+
+                </div>
+
+
+            }
+
+        }
+
+
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- </body> -->
+
+</body>
+
+</html>
+

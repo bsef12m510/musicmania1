@@ -1,0 +1,283 @@
+﻿@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@model OMC.Models.User
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+
+
+    <title>Sign Up</title>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+
+    <link href="/Content/SignIn.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <script>
+
+        function validform() {
+            var email = document.forms["SignUp"]["email"].value;
+
+            var pass = document.getElementById('pass').value;
+
+            var cpass = document.getElementById('cpass').value;
+
+            var re = /^\w+@@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+            if (!email.match(re)) {
+                alert('Inavlid Email format ! Correct format e.g ahmad@gmail.com');
+                return false;
+            }
+
+            if (pass.Length < 6 && pass.Length > 14)
+            {
+                alert('Password length should be between 6-14 , Type Again !');
+                return false;
+            }
+
+            if (pass.Equals(cpass) == false)
+            {
+                alert('Password does not match , Type Again !');
+                return false;
+            }
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+ <!--   <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home">
+                <img src="/img/mm.png" height="30" width="90" alt="logo">
+            </a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home"><h5 style="font-family:'Comic Sans MS' ">Home</h5></a></li>
+        <!--  <li><a href="/Home/Categories"><h5 style="font-family:'Comic Sans MS' ">Categories</h5></a></li>
+            
+            <li><a href="/Home/Playlist"><h5 style="font-family:'Comic Sans MS' ">Playlist</h5></a></li>
+
+        </ul>
+
+        <form class="navbar-form navbar-right pull-left" role="search" style="margin-top: 16px; margin-left:10px; margin-right:20px">
+
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Search" />
+
+            </div>
+
+            <button type="submit" class="btn btn-default">Search</button>
+
+        </form>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home/TopSingers"><h5 style="font-family:'Comic Sans MS' ">Top Singers</h5></a></li>
+            <li><a href="/Home/About"><h5 style="font-family:'Comic Sans MS' ">About</h5></a></li>
+            <li><a href="/Home/Contact"><h5 style="font-family:'Comic Sans MS' ">Contact</h5></a></li>
+            <li><a href="/Home/SignIn"><h5 style="font-family:'Comic Sans MS' ">Sign In</h5></a></li>
+            <li><a href="/Home/SignUp"><h5 style="font-family:'Comic Sans MS' ">Sign Up</h5></a></li>
+
+
+        </ul>
+
+
+
+    </nav>  -->
+
+    
+
+    <div class="row">
+
+
+
+        <div class="col-xs-4">
+
+
+
+        </div>
+
+        
+
+        <div class="col-xs-4">
+
+            <center>
+
+                <h1 class="animated rollIn" style="margin-top: 30px; margin-left: 20px; margin-bottom: 30px; color: #FF0000; font-family: 'Comic Sans MS'; "><span class="glyphicon glyphicon-check"></span><p><b>Sign Up</p></b></h1>
+
+            </center>
+
+            
+
+
+                <form role="form" name="SignUp" action="SignUpUser" onsubmit="return validform()" method="post" enctype="multipart/form-data">
+
+                    <div>
+
+
+
+                         
+       
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Username  </span>
+                            <input type="text" name="UserName" id="UserName" class="form-control" placeholder="e.g 'ahmad_rafique'" aria-describedby="basic-addon1" required>
+                        </div> 
+
+                        <br> 
+
+                        <input type="button" id="b1" value="Check Availability" />
+
+                        <!--  <div id="result"></div> -->
+
+                        <br>
+
+                        <h4 id="result" style="color:red; font-family:'Comic Sans MS'"> </h4>
+
+                        @Scripts.Render("~/bundles/jquery")
+
+                        <script>
+
+                            $(document).ready(function () {
+
+                                //    $('#checking').hide();
+
+                                $('#b1').click(function () {
+
+                                    var userName = $('#UserName').val();
+
+                                    //alert('User Name ='+ userName);
+                                    //  $('#checking').show();
+                                    $.getJSON("/Home/CheckUserName?UserName=" + userName, function (data) {
+                                        $('#checking').hide();
+                                        if (data) {
+                                            $('#result').text("User already exists.");
+
+                                        }
+                                        else {
+                                            $('#result').text("UserName is available");
+                                        }
+                                    });
+
+                                });
+
+                            });
+                        </script>
+
+
+                        <br> 
+
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Email  </span>
+                            <input type="email" name="email" class="form-control" placeholder="e.g 'ahmad_rafique@yahoo.com'" aria-describedby="basic-addon1" required>
+                        </div>
+
+                        <br> <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Password  </span>
+                            <input type="password" id="pass" name="pass" class="form-control" placeholder="i.e 'Length should be 6-14'" aria-describedby="basic-addon1" required>
+                        </div>
+
+                        <br> <br>
+
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Confirm Password  </span>
+                            <input type="password" name="cpass" class="form-control" placeholder="Enter Password Again" aria-describedby="basic-addon1" required>
+                        </div>
+
+                        <br> <br>
+
+
+                        <input type="file" name="Name" class="form-control" placeholder="Picture" required>
+
+                        <br>
+
+
+                        @if (ViewBag.Cpass != null)
+                        {
+
+                            if (ViewBag.Cpass.Equals("Failed"))
+                            {
+
+                                <h3 class="animated fadeInUp" style="margin-top: 30px; margin-left: 20px; margin-bottom: 30px; color: #ffffff; font-family: 'Comic Sans MS'; "> Password doesn't match try again !</h3>
+
+                            }
+                        }
+
+                        @if (ViewBag.Cpass != null)
+                        {
+
+                            if (ViewBag.Cpass.Equals("Exists"))
+                            {
+
+                                <h3 class="animated fadeInUp" style="margin-top: 30px; margin-left: 20px; margin-bottom: 30px; color: #ffffff; font-family: 'Comic Sans MS' "> User Already Exists !</h3>
+
+                            }
+                        }
+
+
+
+                        <button type="submit" class="btn btn-default pull-right">Sign Up</button>
+
+                    </div>
+
+            </form>
+
+
+
+        </div>
+
+
+
+
+
+                <div class="col-xs-6">
+
+                </div>
+
+
+            </div>
+
+     
+
+
+</body>
+
+
+</html>
+

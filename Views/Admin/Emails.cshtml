@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Emails";
+ 
+
+}
+
+@model List<OMC.Models.Email>
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: aliceblue;
+        }
+    </style>
+
+    <title>Home</title>
+
+    <link href="/Content/abootstrap.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Emails.css" rel="stylesheet" />
+
+
+
+
+</head>
+
+
+<body>
+
+
+
+    <br>
+
+ 
+            <div class="fronttext">
+
+                <br> <br>
+
+
+                <center>
+
+
+                    <h1 class="animated bounceInUp" style="margin-right:10px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-inbox"></span>  <p> Emails </p> </h1>
+
+             
+                </center>
+
+                </div>
+
+                 @if(Model != null)
+                 {
+                     foreach (var e in Model)
+                       
+                 {
+
+                <h2 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; ">  <p> &#9993 </p> </h2>
+
+
+                <div class="body">
+
+                    
+
+               <h3 class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'; "> Name: </h3>
+              <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'; "> @e.Name </h5> 
+              
+                 <h3 class="animated bounceInUp" style="color:red; font-family: 'Comic Sans MS'; ">Email: </h3>
+                 <h5 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; "> @e.Email1 </h5>
+                
+                <h3  class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'  ">Message: </h3>
+                <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'  ">  @e.Message </h5>
+                
+
+                    <button type="submit"  class="btn btn-danger pull-right" > <span>
+    @Html.ActionLink("Delete", "DeleteEmail", new { id = @e.Id  }) </span> </button>
+
+                      
+
+                    </div>
+
+                    }
+
+                 }
+
+
+                @*<h2 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; ">  2 - </h2>
+
+
+
+                                <div class="body">
+
+                                    <h3 class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'; "> Name: </h3>
+                                    <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'; ">Afnan Ahmad </h5>
+
+                                    <h3 class="animated bounceInUp" style="color:red; font-family: 'Comic Sans MS'; ">Email: </h3>
+                                    <h5 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; ">happy123@gmail.com </h5>
+
+                                    <h3 class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'; ">Message: </h3>
+                                    <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'; ">Upload the song Hamnava from upcoming  movie of Imran Hashmi adn Vidya Balan.</p> </h5>
+
+                                     <button class="btn btn-danger pull-right"> Delete </button>
+
+                                </div>
+
+
+                    <h2 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; ">  3 - </h2>
+
+
+
+                    <div class="body">
+
+                        <h3 class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'; "> Name: </h3>
+                        <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'; ">Mohsin Nasim </h5>
+
+                        <h3 class="animated bounceInUp" style="color:red; font-family: 'Comic Sans MS'; ">Email: </h3>
+                        <h5 class="animated bounceInUp" style=" color:white; font-family: 'Comic Sans MS'; ">messi10@gmail.com </h5>
+
+                        <h3 class="animated bounceInUp" style=" color:red; font-family: 'Comic Sans MS'; ">Message: </h3>
+                        <h5 class="animated bounceInUp" style="color:white; font-family: 'Comic Sans MS'; ">Please if the new song Mohabbat Yeh - Bilal Saeed of movie Ishqdaria is avilable. Upload it if available. </p> </h5>
+
+                        <button class="btn btn-danger pull-right"> Delete </button>
+
+                    </div>*@
+
+
+
+    <!-- </body> -->
+
+</body>
+
+</html>
+

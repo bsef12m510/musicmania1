@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "AddSongs";
+}
+
+@model OMC.Models.Song
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: aliceblue;
+        }
+    </style>
+
+    <title>Home</title>
+
+    <link href="/Content/abootstrap.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Admin.css" rel="stylesheet" />
+
+
+
+
+</head>
+
+
+<body>
+
+
+
+    <br> <br> <br> <br> <br>
+
+
+   
+
+        <center>
+
+            <div class="body">
+
+                <div class="fronttext">
+
+                   <br>
+
+                    <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-plus"></span> <br> <p> Add Songs </p> </h1>
+
+                  
+
+                    @using (Html.BeginForm("Save", "Admin", FormMethod.Post, new { @class = "form-signin", @enctype = "multipart/form-data" }))
+                    {
+                        @Html.TextBoxFor(m => m.SongName, null, new { @type = "file", @class = "form-control", @placeholder = "Name", @required = "true" })
+
+                        <br>
+
+                        @Html.TextBoxFor(m => m.SingerName, null, new { @class = "form-control", @placeholder = "Singer Name", @required = "true" })
+
+                        <br>
+
+                        <button class="btn btn-lg btn-primary btn-block" value="upload" type="submit">Add</button>
+
+                      if(ViewBag.Add != null)
+                    {
+                    
+            
+                        if(ViewBag.Add.Equals("Success"))
+                    {
+                        <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">  <p> Song Added ! </p> </h1>
+
+                    }
+
+                    }
+
+                    }
+
+               <!--     <form action="/Admin/Save" method="post" enctype="multipart/form-data">
+
+                        
+
+                        <input type="file" name="SongName" class="form-control" placeholder="Song's Name">
+                        <br>
+
+                    <!--  <input type="text" name="SingerName" class="form-control" placeholder="Singer's Name">
+                        <br> -->  
+
+                    <!--    <button type="submit" class="btn btn-lg btn-primary btn-block">Add</button>
+                        <!--   <form method="post" action="/Admin/Add" enctype="multipart/form-data">
+
+                <input type="file" name="Name" class="form-control" placeholder="Song's New Name">
+                <br>
+                <input type="text" name="SingerName" class="form-control" placeholder="Singer's Name">
+                <br>
+                <button type="submit" class="btn btn-lg btn-primary btn-block">Add</button>
+               
+            </form> -->
+
+            
+
+</div>
+
+            </div>
+
+</center>
+
+        
+
+
+
+        <!-- </body> -->
+
+</body>
+
+</html>
+

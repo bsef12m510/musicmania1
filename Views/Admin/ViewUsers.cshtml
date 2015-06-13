@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "ViewUsers";
+    Layout = null;
+}
+
+@model List<OMC.Models.User>
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: aliceblue;
+        }
+    </style>
+
+    <title>Home</title>
+
+    <link href="/Content/abootstrap.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Categories.css" rel="stylesheet" />
+
+
+
+
+
+</head>
+
+
+<body>
+
+    <div class="row">
+
+        <div class="col-xs-2">
+
+            <nav class="navbar navbar-inverse" role="navigation">
+
+                <a class="navbar-brand" href="/Admin/Main">
+                    <img src="/img/admin.jpg" height="150" width="150" alt="logo">
+                </a>
+
+
+
+                <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+                <h4 style="font-family: 'Comic Sans MS'; color: white">WELCOME AHMAD !</h4>
+
+
+
+                <ul class="nav nav-pills nav-stacked ">
+
+                    <li><a href="/Admin/AddSongs"><h3 style="font-family:'Comic Sans MS'; color:red ">Add Songs</h3></a></li>
+                    <li><a href="/Admin/UpdateSongs"><h3 style="font-family: 'Comic Sans MS'; color: red">Update Songs</h3></a></li>
+                    <li><a href="/Admin/DeleteSongs"><h3 style="font-family: 'Comic Sans MS'; color: red">Delete Songs</h3></a></li>
+                    <li><a href="/Admin/Emails"><h3 style="font-family: 'Comic Sans MS'; color:red">Emails</h3></a></li>
+                    <li><a href="/Admin/ViewUsers"><h3 style="font-family: 'Comic Sans MS'; color:red">View Users</h3></a></li>
+                    <li><a href="/Home/SignIn"><h3 style="font-family: 'Comic Sans MS'; color: red">Sign Out</h3></a></li>
+
+
+                </ul>
+
+            </nav>
+
+
+       </div>
+
+        <br> <br> <br> <br> <br>
+
+            <center>
+
+                <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-user"></span> <p> Users </p> </h1>
+
+            </center>
+
+
+
+        @foreach(var u in Model)
+        {
+            <br> <br>
+
+            <div class="col-xs-3">
+
+                <div class="media">
+
+                    <div class="media-left">
+
+
+
+                     
+                            <div class="body">
+
+
+                                <center>
+                                    <h4 class="media-heading animated fadeInUp" style="color: white; font-family:'Comic Sans MS'; margin-bottom:20px ">@u.Username</h4>
+
+
+                                    <img height="165" width="165" class="media-object" src="~/Images/@u.Image" alt="akcent">
+
+                                </center>
+
+                                <button type="submit" class="btn btn-danger pull-right">
+                                    <span>
+                                        @Html.ActionLink("Delete", "DeleteUser", new { id = @u.Id })
+                                    </span>
+                                </button>
+
+
+                            </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            
+        }
+
+
+        <!--
+            <div class="col-xs-3">
+
+
+             
+                    <div class="body">
+
+                        <center>
+                            <h4 class="media-heading animated fadeInUp" style="color: white; font-family:'Comic Sans MS'; margin-bottom:20px ">Asim Ilyas</h4>
+
+
+                            <img height="165" width="165" class="media-object" src="/img/1.jpg" alt="akcent">
+
+                        </center>
+
+                        <button class="btn btn-danger pull-right " style="margin-top: 12px"> Delete </button>
+
+                    </div>
+
+               
+
+            </div>
+
+
+
+
+
+            <div class="col-xs-3">
+
+             
+
+                    <div class="body">
+
+                        <center>
+                            <h4 class="media-heading animated fadeInUp" style="color: white; font-family:'Comic Sans MS'; margin-bottom:20px ">Mohsin Nasim</h4>
+
+
+                            <img height="165" width="165" class="media-object" src="/img/2.jpg" alt="akcent">
+
+                        </center>
+
+                        <button class="btn btn-danger pull-right " style="margin-top: 12px"> Delete </button>
+
+                    </div>
+
+            </div> 
+
+
+
+            <div class="col-xs-3">
+
+              
+              
+
+
+        </div> -->
+
+      
+
+        </div>
+
+        <!-- </body> -->
+
+</body>
+
+</html>
+
+

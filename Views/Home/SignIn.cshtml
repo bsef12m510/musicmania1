@@ -1,0 +1,202 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+@model OMC.Models.User
+
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+
+    <style>
+
+        body {
+            background-color: white;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: white;
+        }
+
+        </style>
+
+
+    <title>Sign In</title>
+
+    <link href="/Content/bootstrap.css" rel="stylesheet"/>
+
+    <link href="/Content/SignIn.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js" > </script>
+
+    </head>
+
+<body>
+
+  <!-- <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home">
+                <img src="/img/mm.png" height="30" width="90" alt="logo">
+            </a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home"><h5 style="font-family:'Comic Sans MS' ">Home</h5></a></li>
+      <!--      <li><a href="/Home/Categories"><h5 style="font-family:'Comic Sans MS' ">Categories</h5></a></li>
+         
+            <li><a href="/Home/Playlist"><h5 style="font-family:'Comic Sans MS' ">Playlist</h5></a></li>
+
+        </ul>
+
+        <form class="navbar-form navbar-right pull-left" role="search" style="margin-top: 16px; margin-left:10px; margin-right:20px">
+
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Search" />
+
+            </div>
+
+            <button type="submit" class="btn btn-default">Search</button>
+
+        </form>
+
+        <ul class="nav navbar-nav">
+             <li><a href="/Home/TopSingers"><h5 style="font-family:'Comic Sans MS' ">Top Singers</h5></a></li>
+            <li><a href="/Home/About"><h5 style="font-family:'Comic Sans MS' ">About</h5></a></li>
+            <li><a href="/Home/Contact"><h5 style="font-family:'Comic Sans MS' ">Contact</h5></a></li>
+            <li><a href="/Home/SignIn"><h5 style="font-family:'Comic Sans MS' ">Sign In</h5></a></li>
+            <li><a href="/Home/SignUp"><h5 style="font-family:'Comic Sans MS' ">Sign Up</h5></a></li>
+
+
+        </ul>
+
+
+
+    </nav>  -->
+
+    <div class="row">
+
+       
+
+            <div class="col-xs-4">
+
+               
+
+            </div>
+        
+        @if (Session["uname"] != null)
+        {
+            Session["uname"] = "";
+            //Session["UId"] = "";
+        }
+
+        
+
+       
+
+            <div class="col-xs-4">
+
+                <center>
+
+                    <h1 class="animated flipInY" style="margin-top: 30px; margin-left: 20px; margin-bottom: 30px; color: #FF0000; font-family: 'Comic Sans MS'; "><span class="glyphicon glyphicon-log-in"></span><p><b>Sign In</p></b></h1>
+
+                </center>
+
+                @using (Html.BeginForm("SignInUser", "Home", FormMethod.Post, new { @class = "form-sigin" }))
+                {
+                     <div class="input-group">
+                         <span class="input-group-addon" id="basic-addon1">Username  </span>
+                         @Html.TextBoxFor(m => m.Username, null, new { @class = "form-control",  @placeholder = "e.g ahmad_rafique", @required = "true" })
+
+
+                         </div>
+                    
+                    <br> <br>
+                    
+                    <div class="input-group">
+                         <span class="input-group-addon" id="basic-addon1">Password </span>
+                         @Html.TextBoxFor(m => m.Password, null, new { @class = "form-control", @placeholder = "e.g xxxxxx", @required = "true", @type = "password"})
+
+
+                         </div>
+                    
+                    <br>
+                    
+                     if (ViewBag.Invalid != null)
+                    {
+
+                        if (ViewBag.Invalid.Equals("Failed"))
+                        {
+
+                            <h3 class="animated fadeInUp" style="margin-top: 30px; margin-left: 20px; margin-bottom: 30px; color: #ffffff; font-family: 'Comic Sans MS' "> Inavalid Username or Password. Try again !</h3>
+
+                        }
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    <br>
+
+                    <button type="submit" class="btn btn-default pull-right">Sign In</button>
+                    
+                    
+                }
+
+             
+             <!--  <form role="form" action="SignInUser" method="post">
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Username  </span>
+                        <input type="text" name="uname" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                    </div>
+
+                    <br> <br>
+
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">Password  </span>
+                        <input type="password" name="pass" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
+                    </div>
+
+                   
+                    <br>
+
+                    <button type="submit" class="btn btn-default pull-right">Sign In</button>
+
+                </form> --> 
+
+            </div> 
+
+           
+
+           
+
+            <div class="col-xs-6">
+
+            </div>
+
+
+        </div>
+
+   
+
+    </body>
+
+
+</html>

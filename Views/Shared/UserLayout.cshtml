@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script>
+
+        $(document).ready(function () {
+            $('#search').click(function () {
+                $('#test').children().remove();
+                var collect = '<div id="search" class="spacer"><div class="row"><div class="col-md-12 col-xs-12"><div style="font-family:\'lithos pro\';background-color:HighlightText;margin-top:50px;margin-left:50px;margin-right:50px">';
+                var Srch = $('#srch').val();
+                $.getJSON("/Home/Search?srch=" + Srch, function (data) {
+                    if (data && data == "")
+                        collect = collect + '<p>No Such Song Found</p>';
+                    $.each(data, function (i, item) {
+                        collect = collect + '<div style="padding-top:20px;padding-left:20px">';
+                        collect = collect + '<h2 style="background-color:HighlightText;margin-top:10px">' + item.SongName + '</h2>';
+                        collect = collect + '<audio controls style="margin-top:20px" ><source src="~/Songs/' + item.FileName + '" type="audio/ogg"></audio></div>';
+                    });
+                    collect = collect + '</div></div> </div></div>';
+                    $('#test').append(collect);
+                });
+            });
+        });
+    </script>
+
+
+
+    
+
+</head>
+
+
+
+<body>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home">
+                <img src="/img/mm.png" height="30" width="90" alt="logo">
+            </a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home"><h5 style="font-family:'Comic Sans MS' ">Home</h5></a></li>
+            <!--    <li><a href="/Home/Categories"><h5 style="font-family:'Comic Sans MS' ">Categories</h5></a></li>
+                -->
+            <li><a href="/Home/Playlist"><h5 style="font-family:'Comic Sans MS' ">Public</h5></a></li>
+
+
+        </ul>
+
+        <form class="navbar-form navbar-right pull-left"  role="search" action="/Home/Search" method="post" style="margin-top: 16px; margin-left:10px; margin-right:20px">
+
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Search" name="srch" id="srch" />
+                <button type="submit" name="search" id="search" class="btn btn-default"> Search</button>
+
+
+
+            </div>
+
+
+
+        </form> 
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home/About"><h5 style="font-family:'Comic Sans MS' ">About</h5></a></li>
+            <li><a href="/Home/Contact"><h5 style="font-family:'Comic Sans MS' ">Contact</h5></a></li>
+          
+            @try
+            {
+
+                if (Session["uname"].Equals("") == false)
+                {
+                    
+                     <li><a href="/User/Playlists"><h5 style="font-family:'Comic Sans MS' ">Playlists</h5></a></li>
+           
+                    <li><a href="/User/UserPlaylist"><h5 style="font-family:'Comic Sans MS' "> Favourites</h5></a></li>
+
+                    
+                      <li><a href="/Home/SignIn"><h5 style="font-family:'Comic Sans MS' ">Sign Out</h5></a></li>
+                       <li><a href="#"><h4 style="font-family:'Comic Sans MS'">           </h4></a></li>
+                     <li><a href="#"><h4 style="font-family:'Comic Sans MS'">           </h4></a></li>
+                    
+                      <li><a href="#"><h4 style="font-family:'Comic Sans MS'; color:red">Welcome @Session["uname"]</h4></a></li>
+                     
+                }
+                else
+                {
+                    <li><a href="/Home/SignIn"><h5 style="font-family: 'Comic Sans MS'">Sign In</h5></a></li>
+                       <li><a href="/Home/SignUp"><h5 style="font-family:'Comic Sans MS' ">Sign Up</h5></a></li>
+                 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                 <li><a href="/Home/SignIn"><h5 style="font-family: 'Comic Sans MS'">Sign In</h5></a></li>
+                       <li><a href="/Home/SignUp"><h5 style="font-family:'Comic Sans MS' ">Sign Up</h5></a></li>
+                 
+            }
+              
+              
+                       
+        </ul>
+
+
+
+    </nav>
+
+    <div id="test">
+    
+            @RenderBody()
+
+        </div>
+
+
+        
+
+
+    @Scripts.Render("~/bundles/jquery")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

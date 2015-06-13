@@ -1,0 +1,143 @@
+﻿@{
+    ViewBag.Title = "AddPlaylistForm";
+    Layout = null;
+}
+
+
+@model List<String>
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h2 {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+
+    <title>About</title>
+
+
+    <link href="/Content/bootstrap.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Playlist.css" rel="stylesheet" />
+
+    <link href="/Content/animate.css" rel="stylesheet" />
+
+
+</head>
+
+
+<body>
+
+
+
+
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/Home">
+                <img src="/img/mm.png" height="30" width="90" alt="logo">
+            </a>
+        </div>
+
+
+
+        <ul class="nav navbar-nav">
+            <li><a href="/Home"><h5 style="font-family:'Comic Sans MS' ">Home</h5></a></li>
+
+            <li><a href="/Home/Playlist"><h5 style="font-family:'Comic Sans MS' ">Public</h5></a></li>
+
+        </ul>
+
+        <form class="navbar-form navbar-right pull-left" role="search" action="/Home/Search" method="post" style="margin-top: 16px; margin-left:10px; margin-right:20px">
+
+            <div class="form-group">
+
+                <input type="text" class="form-control" placeholder="Search" name="srch" id="srch" />
+
+            </div>
+
+            <button type="submit" class="btn btn-default">Search</button>
+
+        </form>
+
+        <ul class="nav navbar-nav">
+            <li><a href="/User/Playlists"><h5 style="font-family:'Comic Sans MS' ">Playlists</h5></a></li>
+
+            <li><a href="/Home/About"><h5 style="font-family:'Comic Sans MS' ">About</h5></a></li>
+            <li><a href="/Home/Contact"><h5 style="font-family:'Comic Sans MS' ">Contact</h5></a></li>
+            <li><a href="/User/UserPlaylist"><h5 style="font-family:'Comic Sans MS' "> Favourites</h5></a></li>
+
+            <li><a href="/Home/SignIn"><h5 style="font-family:'Comic Sans MS' ">Sign Out</h5></a></li>
+
+            <li><a href="#"><h4 style="font-family:'Comic Sans MS'">           </h4></a></li>
+            <li><a href="#"><h4 style="font-family:'Comic Sans MS'">           </h4></a></li>
+
+            <li><a href="#"><h4 style="font-family:'Comic Sans MS'; color:red ">Welcome @Session["uname"]</h4></a></li>
+
+
+        </ul>
+
+
+
+    </nav>
+
+    @*<div class="bodyimg pull-right">
+
+            <img height="145" width="145" class="media-object pull-right animated fadeInUpBig" src="/Images/@Session["img"]" alt=@Session["uname"]>
+
+        </div>*@
+
+    <center>
+
+        <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-list"></span> <p> Add Playlist </p> </h1>
+
+    </center>
+
+
+
+
+
+
+    <div class="body">
+
+        <form method="post" action="/User/AddPlaylist" enctype="multipart/form-data">
+            <input type="text" name="Playlist1" class="form-control" placeholder="  Playlist Name" required>
+            <br> <input type="file" name="Image" class="form-control" placeholder="Image">
+            <br> <input type="text" name="UserId" value="@Session["UId"]" class="form-control" placeholder="User Id">
+            <br><button type="submit" class="btn btn-lg btn-primary btn-block">Add Playlist</button>
+
+
+
+
+        </form>
+
+       
+
+    </div>
+
+    <!-- </body> -->
+
+</body>
+
+</html>
+
+

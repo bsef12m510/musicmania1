@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "UpdateSongs";
+}
+
+@model OMC.Models.Admin
+
+
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        span {
+            color: red;
+        }
+
+        p {
+            color: aliceblue;
+        }
+    </style>
+
+    <title>Home</title>
+
+    <link href="/Content/abootstrap.css" rel="stylesheet" />
+
+    <script src="/Scripts/bootstrap.js"> </script>
+
+    <link href="/Content/Admin.css" rel="stylesheet" />
+
+    
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body>
+
+
+    <br> <br> <br> <br> <br>
+
+
+
+
+    <center>
+
+        <div class="body">
+
+            <div class="fronttext">
+
+                <br>
+
+                @if (ViewBag.Update != null)
+                {
+
+                    if (ViewBag.Update.Equals("Success"))
+                    {
+                        <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">  <p> Song Updated ! </p> </h1>
+
+                    }
+                    else if (ViewBag.Update.Equals("Fail"))
+                    {
+                        <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">  <p> Song doesn't exist ! </p> </h1>
+
+                    }
+
+                }
+                else
+                {
+                    <h1 class="animated bounceInUp" style="margin-right:110px; margin-bottom: 50px; color: #FF0000; font-family: 'Comic Sans MS'; ">     <span class="glyphicon glyphicon-ok"></span> <br> <p> Update Songs </p> </h1>
+
+                }
+                
+                
+
+
+                
+                 <form method="post" action="/Admin/Update" enctype="multipart/form-data">
+                        <input type="text" name="OldName" class="form-control" placeholder="Song's Old Name" value="@Session["SName"]">
+                   <br> <input type="file" name="NewName" class="form-control" placeholder="Song's New Name" required>
+                       <br> <input type="text" name="SingerName" class="form-control" placeholder="Singer's New Name" required>
+                        <br><button type="submit" class="btn btn-lg btn-primary btn-block">Update</button>
+                     
+                     
+
+
+                    </form>
+              
+
+
+
+            </div>
+
+        </div>
+
+    </center>
+
+
+
+
+
+    <!-- </body> -->
+
+</body>
+
+</html>
+
